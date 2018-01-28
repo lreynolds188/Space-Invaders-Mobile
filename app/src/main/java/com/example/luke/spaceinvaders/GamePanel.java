@@ -59,7 +59,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 
     public GamePanel(Context context, int w, int h, String gamestate)
     {
-        // what does this do????
         super(context);
 
         this.context = context;
@@ -105,6 +104,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         barriers =  new ArrayList<>();
 
         lives = new Lives(screenWidth, cosmicAlien, BitmapFactory.decodeResource(getResources(), R.drawable.playerlife));
+
         if(resetScore){
             score.update(0);
             level.update(1);
@@ -291,10 +291,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int w, int h)
-    {
-
-    }
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int w, int h) {}
 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder)
@@ -303,10 +300,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     }
 
     @Override
-    public void surfaceCreated(SurfaceHolder surfaceHolder)
-    {
-
-    }
+    public void surfaceCreated(SurfaceHolder surfaceHolder) {}
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -343,13 +337,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             } else if(event.getActionMasked() == MotionEvent.ACTION_UP || event.getActionMasked() == MotionEvent.ACTION_POINTER_UP) {
                 gameover.newGameDown = false;
                 gameover.menuDown = false;
-
                 if (event.getX() > screenWidth/5 && event.getX() < screenWidth/5*4) {
                     if (event.getY() > screenHeight / 6 * 4 && event.getY() < screenHeight / 6 * 4 + screenHeight / 24 * 3) {
                         newGame(true);
+                        StartThreads();
+                        gamestate = "playing";
                     } else if (event.getY() > screenHeight / 6 * 5 && event.getY() < screenHeight / 6 * 5 + screenHeight / 24 * 3) {
-                        Intent i = new Intent(context, MenuInit.class);
-                        context.startActivity(i);
+
                     }
                 }
             }
@@ -359,9 +353,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 
     public void update()
     {
-        background.update();
         if(gamestate == "playing" || gamestate == "help")
         {
+            background.update();
             if (enemies.size() <= 0) {
                 level.level++;
                 newGame(false);
@@ -376,10 +370,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             }
 
             if(gamestate == "playing"){
-
                 enemyXvel = Utils.updateEnemyAxis(enemies, level.level)[0];
                 enemyYvel = Utils.updateEnemyAxis(enemies, level.level)[1];
-
 
                 for (Enemy enemy : enemies)
                 {
@@ -389,17 +381,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 {
                     enemy.update();
                 }
-
-
             } else {
                 if (enemies.size() <= 0) {
                     newGame(true);
                 }
-
             }
-        } else if(gamestate == "gameover"){
-
         } else if(gamestate == "initGameover"){
+            collisionThread.setRunning(false);
             gamestate = "gameover";
             gameover = new Gameover(screenWidth, screenHeight, score.score, cosmicAlien);
         }

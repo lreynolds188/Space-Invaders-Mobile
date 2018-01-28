@@ -34,12 +34,10 @@ public class Help extends Activity {
         int width = size.x;
         int height = size.y;
 
-        int orientation = display.getRotation();
-
         setContentView(new GamePanel(this, width, height, "help"));
     }
 
-    int sisxthOfScreenHeight, fourthOfScreenWidth, currentWidth, currentHeight;
+    int sixthOfScreenHeight, fourthOfScreenWidth, currentWidth, currentHeight;
     Paint tempPaint = new Paint();
 
     public Help(int screenWidth, int screenHeight, Typeface cosmicAlien){
@@ -48,7 +46,7 @@ public class Help extends Activity {
         tempPaint.setTypeface(cosmicAlien);
         tempPaint.setTextSize(45);
         tempPaint.setTextAlign(Paint.Align.CENTER);
-        sisxthOfScreenHeight = screenHeight / 6;
+        sixthOfScreenHeight = screenHeight / 6;
         fourthOfScreenWidth = screenWidth / 4;
         currentHeight = screenHeight;
         currentWidth = screenWidth;
@@ -60,18 +58,18 @@ public class Help extends Activity {
         // Shoot
         tempPaint.setStyle(Paint.Style.STROKE);
         tempPaint.setStrokeWidth(10);
-        canvas.drawRect((float)0, (float) sisxthOfScreenHeight *4,(float)currentWidth, (float) sisxthOfScreenHeight *5, tempPaint);
+        canvas.drawRect((float)0, (float) sixthOfScreenHeight *4,(float)currentWidth, (float) sixthOfScreenHeight *5, tempPaint);
         // Left and Right
-        canvas.drawRect((float)currentWidth/2, (float) sisxthOfScreenHeight *5,(float)currentWidth, (float) sisxthOfScreenHeight *6, tempPaint);
-        canvas.drawRect((float)0, (float) sisxthOfScreenHeight *5,(float)currentWidth, (float) sisxthOfScreenHeight *6, tempPaint);
+        canvas.drawRect((float)currentWidth/2, (float) sixthOfScreenHeight *5,(float)currentWidth, (float) sixthOfScreenHeight *6, tempPaint);
+        canvas.drawRect((float)0, (float) sixthOfScreenHeight *5,(float)currentWidth, (float) sixthOfScreenHeight *6, tempPaint);
 
         // Shoot Text
         tempPaint.setStyle(Paint.Style.FILL);
         tempPaint.setStrokeWidth(1);
-        canvas.drawText("SHOOT", (float)currentWidth/2, (float)(sisxthOfScreenHeight *4)+(sisxthOfScreenHeight /2), tempPaint);
+        canvas.drawText("SHOOT", (float)currentWidth/2, (float)(sixthOfScreenHeight *4)+(sixthOfScreenHeight /2), tempPaint);
 
         // Left and Right Text
-        canvas.drawText("MOVE LEFT", (float)fourthOfScreenWidth, (float)(sisxthOfScreenHeight *5)+(sisxthOfScreenHeight /2), tempPaint);
-        canvas.drawText("MOVE RIGHT", (float)fourthOfScreenWidth*3, (float)(sisxthOfScreenHeight *5)+(sisxthOfScreenHeight /2), tempPaint);
+        canvas.drawText("MOVE LEFT", (float)fourthOfScreenWidth, (float)(sixthOfScreenHeight *5)+(sixthOfScreenHeight /2), tempPaint);
+        canvas.drawText("MOVE RIGHT", (float)fourthOfScreenWidth*3, (float)(sixthOfScreenHeight *5)+(sixthOfScreenHeight /2), tempPaint);
     }
 }

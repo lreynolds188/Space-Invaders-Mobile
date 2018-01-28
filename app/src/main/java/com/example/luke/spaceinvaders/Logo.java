@@ -42,7 +42,6 @@ public class Logo extends SurfaceView implements SurfaceHolder.Callback {
         while(true){
             try{
                 lThread.setRunning(false);
-                lThread.join();
                 System.out.println("Logo thread stopped.");
                 break;
             }catch(Exception e){e.printStackTrace();}
@@ -51,7 +50,7 @@ public class Logo extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update(){
         if(lThread.timePlayed >= 20){
-            lThread.setRunning(false);
+            StopThreads();
             Intent intent = new Intent(context, MenuInit.class);
             context.startActivity(intent);
         }

@@ -21,11 +21,10 @@ public class CollisionThread extends Thread
     @Override
     public void run()
     {
-
         while (running)
         {
             try{
-                    this.gamePanel.CollisionUpdate();
+                this.gamePanel.CollisionUpdate();
             }catch(Exception e){}
 
         }

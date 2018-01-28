@@ -75,7 +75,6 @@ public class Menu extends SurfaceView implements SurfaceHolder.Callback{
         while(true){
             try{
                 mThread.setRunning(false);
-                mThread.join();
                 System.out.println("Menu thread stopped.");
                 break;
             }catch(Exception e){e.printStackTrace();}

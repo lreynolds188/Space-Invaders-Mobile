@@ -44,7 +44,7 @@ public class Gameover {
 
         paint.setColor(Color.RED);
         paint.setStyle(Paint.Style.FILL);
-        paint.setTextSize(120);
+        paint.setTextSize(80);
         paint.setStrokeWidth(1);
         canvas.drawText("Game Over!", screenWidth / 2, screenHeight / 6, paint);
         canvas.drawText("You scored: " + currentScore, screenWidth / 2, screenHeight / 6 + 125, paint);
